@@ -1,6 +1,10 @@
 
 .text{
    font-weight: 700;
+   font-size: 26px;
    
 
+}
+.message{
+   border-radius: 20px;
 }
