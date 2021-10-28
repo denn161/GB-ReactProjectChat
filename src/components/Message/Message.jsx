@@ -6,11 +6,12 @@ import styles from './Message.module.css';
 
 
 
-const Message = ({ text,flag}) => {   
+const Message = ({ text, colored }) => {
+    
     
     return (            
       <div className="alert alert-danger message">
-      <p className={styles.text} style={{color:flag?"orange":"darkgreen"}}>{text}</p>   
+      <p className={styles.text} style={{color:colored?"orange":"darkgreen"}}>{text}</p>   
       </div>
   );
 }
