@@ -1,0 +1,39 @@
+
+:root{
+  --color-white:#fff;
+  --pointer:pointer;
+  --color-black:#000;
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,h2,h3,ul{
+  margin: 0;
+  padding: 0;
+}
+img{
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+
+}
+
+button{
+  color: var(--color-white) !important;
+  cursor: var(--pointer) !important;
+}
+
+
