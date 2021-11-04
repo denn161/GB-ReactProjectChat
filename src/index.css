@@ -26,15 +26,27 @@ img{
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: sans-serif;
-  background-color: rgb(133, 204, 66);
-
-}
-
+ }
+/* 
 button{
   color: var(--color-white) !important;
   cursor: var(--pointer) !important;
+} */
+
+.container{
+  max-width: 1230px;
+  padding: 0 15px;
+  margin: 0 auto;
 }
 
-
+.messages__container{
+  width: 80%;
+  height: 70vh;
+  border: 4px solid orange;
+  overflow-y: auto;
+  margin-top: 30px;
+}
+.messages__list{
+  list-style: none;
+}
