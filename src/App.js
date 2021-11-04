@@ -1,37 +1,28 @@
-import React from "react";
-import { useState, useCallback } from "react";
-import { useToggle } from "./components/hooks/hook";
-import Message from "./components/Message";
-import Button from "./components/Button/Button";
 
-
-//hooks 
+import React, { useCallback, useState } from "react";
+import Form from "./components/Form/Form";
+import { BOT_NAME } from "./components/utils/constants";
+import { useBotMessage } from "./hooks/useBotMessage";
+import MessagePage from "./components/MessagePage";
 
 function App() {
-  const [text, setText] = useState("Привет мой друг!Это курс по реакту!!")  
-  const [ state, toggle]  = useToggle()
-  const [colored, setColored] = useToggle(false) 
-   
-  const changeText = () => {
-    setText("Пора приступать к работе!!!")   
-  }   
+  const [messages, setMessages] = useState([]);
   
-  return (
-    <div className="container pt-3"> 
-  { state &&   <Message text={text} colored={colored}/>}
-      <Button
-        classes="btn btn-success"
-        onClick={changeText}
-        text="Изменить текст"/>
-      <Button
-        classes="btn btn-warning"
-        onClick={setColored}
-        text="Изменить цвет текста" />
-        <Button
-        classes="btn btn-danger"
-        onClick={toggle}
-        text={state?"Скрыть текст":"Показать текст"}/>          
-    </div>
+  const addMessage = useCallback((newMessage) => {  
+      setMessages((prevMessages)=>[
+        ...prevMessages,
+        newMessage
+      ])
+    },[])
+
+  useBotMessage(messages,addMessage,BOT_NAME)
+ 
+  return ( 
+    <div className="container">
+      <MessagePage messages={messages}/>
+      <Form addMessage={addMessage} />       
+      
+   </div>   
   );
 }
 
