@@ -1,13 +1,15 @@
 
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { TextField, Button, Grid } from '@material-ui/core'
 import { USER_NAME } from '../utils/constants'
 import {useInput} from '../../hooks/useInput'
 import styles from './Form.module.css'
 
 const Form = ({ addMessage }) => {
-
-  const {bind,onClear} = useInput("") 
+  
+  const { bind, onClear } = useInput("")
+  
+  const inputRef = useRef()
 
     const handleSubmit = (e) => {
     e.preventDefault()
@@ -15,7 +17,8 @@ const Form = ({ addMessage }) => {
        id: Math.random().toString(36).substr(2, 9),
        name:USER_NAME,
        message:bind.value,
-    })
+      })
+      inputRef.current.focus()
       onClear()
   }  
   const handleKeyPress = (e) => {
@@ -23,6 +26,10 @@ const Form = ({ addMessage }) => {
       handleSubmit(e)
     }
   }
+  useEffect(() => {
+    inputRef?.current.focus()   
+
+  },[])
   return (
     <form className={styles.form}>
       <Grid container
@@ -36,7 +43,7 @@ const Form = ({ addMessage }) => {
           rowsMax={2}
            {...bind}
           onKeyDown={handleKeyPress}
-        />
+          inputRef={inputRef} />
         <Button
           variant="outlined"
           onClick={handleSubmit}

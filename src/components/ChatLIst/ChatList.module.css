@@ -1,0 +1,9 @@
+
+.chatlist__wrapper{
+     border:4px solid orange;
+     width:30%;
+     height:70vh;
+    border-right: none;
+     border-radius: 10px 0 0 10px;
+     overflow-y: auto;
+}
