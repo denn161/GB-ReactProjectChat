@@ -1,6 +1,6 @@
 
 
-import React,{useCallback, useEffect, useState } from 'react';
+import React,{useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
 import ChatItem from '../../componentsItem/ChatItem'
@@ -38,15 +38,9 @@ const ChatList = () => {
 
   const [nameChat, setNameChat] = useState([])
    
-  const addChat =useCallback( () => {
-        setNameChat(nameChats)
-
-     },[])
-       
+  
   useEffect(() => {
-    addChat();
-
-
+    setNameChat(nameChats)
   },[])
  
 

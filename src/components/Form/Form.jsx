@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react'
+import React, {useEffect, useRef} from 'react'
 import { TextField, Button, Grid } from '@material-ui/core'
 import { USER_NAME } from '../utils/constants'
 import {useInput} from '../../hooks/useInput'
@@ -17,18 +17,20 @@ const Form = ({ addMessage }) => {
        id: Math.random().toString(36).substr(2, 9),
        name:USER_NAME,
        message:bind.value,
-      })
-      inputRef.current.focus()
+      })       
       onClear()
-  }  
+      inputRef.current.focus()
+    }
+  
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSubmit(e)
     }
   }
+  
   useEffect(() => {
-    inputRef?.current.focus()   
-
+  
+    inputRef?.current.focus()
   },[])
   return (
     <form className={styles.form}>
