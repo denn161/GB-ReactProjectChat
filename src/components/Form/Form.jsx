@@ -32,6 +32,8 @@ const Form = ({ addMessage }) => {
   
     inputRef?.current.focus()
   },[])
+
+  
   return (
     <form className={styles.form}>
       <Grid container
