@@ -1,7 +1,6 @@
 
 
 import React,{useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Box } from '@material-ui/core';
 import ChatItem from '../../componentsItem/ChatItem'
 import styles from './ChatList.module.css';
@@ -53,7 +52,5 @@ const ChatList = () => {
 }
 
 
-ChatList.propTypes = {
-  setErrorApi: PropTypes.func
-}
+
 export default ChatList;

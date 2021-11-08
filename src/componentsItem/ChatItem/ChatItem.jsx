@@ -21,6 +21,6 @@ const ChatItem = ({nameChat}) => {
 }
 
 ChatItem.propTypes = {
-  nameChat: PropTypes.string
+  nameChat: PropTypes.array
 }
 export default ChatItem;
