@@ -1,11 +1,12 @@
 
-import React, {useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
+import PropTypes from 'prop-types';
 import { TextField, Button, Grid } from '@material-ui/core'
 import { USER_NAME } from '../utils/constants'
 import {useInput} from '../../hooks/useInput'
 import styles from './Form.module.css'
 
-const Form = ({ addMessage }) => {
+const Form = ({ addMessage,chatId }) => {
   
   const { bind, onClear } = useInput("")
   
@@ -20,8 +21,7 @@ const Form = ({ addMessage }) => {
       })       
       onClear()
       inputRef.current.focus()
-    }
-  
+    }  
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSubmit(e)
@@ -29,9 +29,11 @@ const Form = ({ addMessage }) => {
   }
   
   useEffect(() => {
-  
-    inputRef?.current.focus()
-  },[])
+    if (chatId) {
+     inputRef?.current.focus() 
+    } 
+    
+  },[chatId])
 
   
   return (
@@ -59,6 +61,13 @@ const Form = ({ addMessage }) => {
   );
 }
 
-
+Form.propTypes = {
+  addMessage: PropTypes.func,
+  chatId:PropTypes.string
+}
 
 export default Form;
+
+
+
+

@@ -1,5 +1,5 @@
-import styles from './Login.module.css';
-import PropTypes from 'prop-types';
+// import styles from './Login.module.css';
+// import PropTypes from 'prop-types';
 
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
 }
 
 
-Login.propTypes = {
-  setErrorApi: PropTypes.func
-}
+// Login.propTypes = {
+//   setErrorApi: PropTypes.func
+// }
 export default Login;
