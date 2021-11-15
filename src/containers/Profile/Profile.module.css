@@ -1,0 +1,12 @@
+.title{
+    color: purple;
+    font-size: 26px;
+    line-height: 36px;
+    font-weight: 700;
+    font-family: sans-serif;
+}
+
+.container{
+    text-align: center;
+    padding: 40px 0;
+}

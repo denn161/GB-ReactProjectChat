@@ -6,7 +6,7 @@ export const links = [
         text:"Home",
     },
      {
-        to: "/login",
+        to: "/profile",
         text:"Profile",
     },
      {
@@ -14,7 +14,7 @@ export const links = [
         text:"Chat",
     },
        {
-        to: "/found",
+        to: "*",
         text:"NotFound",
     }
      

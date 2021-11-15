@@ -18,16 +18,13 @@ const initialState = {
    chat4: [],
    
 }
-const Chat = () => {
-   
- 
-  const [messages, setMessages] = useState(initialState);
- 
-  
- 
-  const { chatId } = useParams();
 
-   
+const Chat = () => {
+
+  
+  const [messages, setMessages] = useState(initialState);
+      
+  const { chatId } = useParams();   
   
   const addMessage = useCallback((newMessage) => {
     if (newMessage.message) {

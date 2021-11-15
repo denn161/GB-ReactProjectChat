@@ -59,8 +59,9 @@ const ChatList = () => {
       name:bind.value
       }
      setNameChats((prevState)=>
-      [...prevState, newChat])
-     }     
+       [...prevState, newChat])
+   
+    }   
   
     onClear()
      inputRef.current.focus()
