@@ -2,7 +2,8 @@
 import { useEffect} from "react"
 
 export const useBotMessage = (messages, addMessage,botName,chatId) => {
-      useEffect(() => {  
+  useEffect(() => {
+        
         if(messages[chatId]?.length&&messages[chatId]?.[messages[chatId]?.length-1].name !== botName) {
         
           const newMessage = {

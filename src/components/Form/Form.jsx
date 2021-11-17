@@ -11,6 +11,7 @@ const Form = ({ addMessage,chatId }) => {
 
   const { color, hendleChangeColor} = useContext(ThemeContext);
      
+
   
   const { bind, onClear } = useInput("")
   

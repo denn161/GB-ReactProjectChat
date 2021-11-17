@@ -1,20 +1,30 @@
-import { TOGGLE_CHECKBOX } from "./actions";
+import { ARRAY_NAMES, CHANGE_VALUE} from "./actions";
+
+// const initialState = {
+//     checkbox: false,
+//     name:'Показать текст'
+// }
 
 const initialState = {
-    checkbox: false,
-    name:'Показать текст'
+    name: 'default name',
+    names:[]
 }
 
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case TOGGLE_CHECKBOX:
+        case CHANGE_VALUE:
             return {
                 ...state,
-                checkbox: !state.checkbox,
+                name: action.payload,
                
 
-            }           
+            }
+        case ARRAY_NAMES:
+            return {
+                ...state,
+                names:[...state.names,action.payload]
+            }
     
         default:
             return state;

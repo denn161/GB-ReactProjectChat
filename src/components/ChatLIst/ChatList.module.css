@@ -10,8 +10,27 @@
 
 .chatlist__input{
      outline: none;
+     border: none;
+     width: 50%;
 
 }
 .chatlist__input:focus{
-     background-color: thistle;
+     background-color: rgb(228, 227, 215);
 }
+
+.chatlist__form{
+     display: flex;
+}
+
+.chatlist__btn{
+    color: #fff;
+    min-width: 50%;
+    border: none;
+    padding: 10px 0 ;
+    background-color: rgb(17, 206, 49);
+    outline:none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 18px;
+    font-family: sans-serif;
+  }
