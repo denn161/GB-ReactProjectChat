@@ -1,13 +1,11 @@
 
-
-
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom'
-import close from './img/close.png'
+import close from './img/close/close.png'
 import styles from './ChatItem.module.css';
 
 
-const ChatItem = ({chats,removeChat}) => {
+const ChatItem = ({ chats,removeChats }) => {
   return (
     <ul className={styles.chat__list}>
       {chats.map(({ id,name, img }) =>
@@ -18,7 +16,7 @@ const ChatItem = ({chats,removeChat}) => {
             {name}
           </div>
           </NavLink>
-           <div onClick={()=>removeChat(id)} className={styles.chat__btn}><img src={close} alt="close" /></div>
+           <div onClick={()=>removeChats(id)} className={styles.chat__btn}><img src={close} alt="close" /></div>
        
           </li>
       )}      

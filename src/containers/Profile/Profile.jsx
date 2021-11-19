@@ -1,17 +1,14 @@
 
 import React,{useState} from 'react'
-import PropTypes from 'prop-types';
-import {useDispatch } from 'react-redux';
+import {useSelector,useDispatch} from 'react-redux';
 import styles from './Profile.module.css';
-import { changeArrayStoreNames,changeValueStore } from '../../store/profile/actions';
-import { useSelector } from 'react-redux';
-
+import {changeValueStore } from '../../store/profile/actions';
+import { selectorName } from '../../store/profile/selectors';
 
 
 const Profile = () => {
 
-
-  const {name,names}= useSelector(state=>state)
+  const {name,names}= useSelector(selectorName)
 
   const dispatch = useDispatch()
   
@@ -22,28 +19,19 @@ const Profile = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-   
+    e.preventDefault();   
     if (value) {
-  dispatch(changeValueStore(value))
-   dispatch(changeArrayStoreNames(value))
-    }
-   
+   dispatch(changeValueStore(value))
+ 
+      
+    }   
     setValue('')
-
   }
-
  
   return (
 
     <div className={styles.container}>
-     {/* <h1 className={styles.title}>
-      Profile
-      </h1>
-      <input id="input-check" type="checkbox" checked={checkbox} onChange={handleChange}/>
-      <label htmlFor="input-check">{checkbox ? "Скрыть текст" : name}</label>
-
-      {checkbox && <div style={{ width: "50%", textAlign: "center", backgroundColor: "purple", padding: "20px", borderRadius: "20px", margin: "0 auto" }}><p style={{ color: "orange", fontSize: "24px", fontWeight: "700" }}>Здесь будет информация о профиле и элементы,что бы зарегистрироваться на сайте!</p></div>} */}
+    
       
       <form onSubmit={handleSubmit}>
       <p>{name}</p>  
@@ -51,17 +39,37 @@ const Profile = () => {
          <button>Добавить</button>
       </form>
       <ul>
-        {names.map((item) =>
-            <li key={item}>{item.name}</li>
+        {names.map((item,i) =>
+            <li key={i}>{item}</li>
           )}
       </ul>
-    </div>
-   
+    </div>   
   );
 }
 
-
-Profile.propTypes = {
-  setErrorApi: PropTypes.func
-}
 export default Profile;
+
+
+
+
+ /* <h1 className={styles.title}>
+      Profile
+      </h1>
+      <input id="input-check" type="checkbox" checked={checkbox} onChange={handleChange}/>
+      <label htmlFor="input-check">{checkbox ? "Скрыть текст" : name}</label>
+
+      {checkbox && <div style={{ width: "50%", textAlign: "center", backgroundColor: "purple", padding: "20px", borderRadius: "20px", margin: "0 auto" }}><p style={{ color: "orange", fontSize: "24px", fontWeight: "700" }}>Здесь будет информация о профиле и элементы,что бы зарегистрироваться на сайте!</p></div>} */
+
+
+// const mapStateToProps = (state) => ({
+//   name: state.profile.name,
+//   names:state.profile.names
+// })
+
+// const mapDispatchToProps =(dispatch)({
+//  setValue:(value)=>dispatch(changeValueStore(value)) ,
+//  
+// })
+
+
+// export default connect(mapStateToProps,mapDispatchToProps)( Profile);

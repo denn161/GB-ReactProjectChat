@@ -4,21 +4,20 @@ import MessageItem from '../../componentsItem/MessageItem';
 import styles from './MessageList.module.css';
 
 
-const MessageList = ({ messages }) => {
+const MessageList = ({ messages,removeMessage }) => {
   
   return (     
        
 <div className={styles.messages__container}>
-    <MessageItem messages={messages}/>
+    <MessageItem messages={messages} removeMessage={removeMessage}/>
 </div>
 
 
 );
 }
 
-
 MessageList.propTypes = {
-  messages: PropTypes.array
-
+  messages: PropTypes.array,
+  removeMessage:PropTypes.func
 }
 export default MessageList;

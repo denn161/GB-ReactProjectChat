@@ -1,4 +1,4 @@
-import { ARRAY_NAMES, CHANGE_VALUE} from "./actions";
+import {CHANGE_VALUE} from "./actions";
 
 // const initialState = {
 //     checkbox: false,
@@ -17,15 +17,10 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 name: action.payload,
-               
+                names:[...state.names,action.payload]
 
             }
-        case ARRAY_NAMES:
-            return {
-                ...state,
-                names:[...state.names,action.payload]
-            }
-    
+       
         default:
             return state;
     }

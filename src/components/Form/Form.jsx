@@ -1,26 +1,23 @@
 
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types';
 import { TextField, Button, Grid } from '@material-ui/core'
 import { USER_NAME } from '../utils/constants'
 import {useInput} from '../../hooks/useInput'
 import styles from './Form.module.css'
-import { ThemeContext } from '../utils/ThemeContext';
+
 
 const Form = ({ addMessage,chatId }) => {
 
-  const { color, hendleChangeColor} = useContext(ThemeContext);
-     
-
-  
+  // const { color, hendleChangeColor} = useContext(ThemeContext);
+       
   const { bind, onClear } = useInput("")
   
   const inputRef = useRef()
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      hendleChangeColor();
-      addMessage({
+       addMessage({
        id: Math.random().toString(36).substr(2, 9),
        name:USER_NAME,
        message:bind.value,
@@ -59,7 +56,7 @@ const Form = ({ addMessage,chatId }) => {
         <Button
           variant="outlined"
           onClick={handleSubmit}
-          style={{ marginTop: 20, padding: "10px 20px", color:`${color}`, borderColor: "orange" }}>
+          style={{ marginTop: 20, padding: "10px 20px", borderColor: "orange" }}>
           Отправить
         </Button>
       </Grid>      

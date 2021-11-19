@@ -12,16 +12,15 @@ export const changeValueStore = (text) => ({
     payload:text
 })
 
-export const changeArrayStoreNames = (value) => {
-          return {     
-        type: ARRAY_NAMES,
-        payload: {
-            name: value
-        }
-    }    
+// export const changeArrayStoreNames = (value) => {
+//           return {     
+//         type: ARRAY_NAMES,
+//         payload:value
+        
+//     }  
     
   
-}
+// }
 
 
 

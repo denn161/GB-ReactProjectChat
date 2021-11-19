@@ -1,23 +1,22 @@
 
-
-
 import PropTypes from 'prop-types';
+import close from '../ChatItem/img/close/close.png'
 import styles from './MessageItem.module.css';
 
-
-const MessageItem = ({messages}) => {
+const MessageItem = ({messages,removeMessage}) => {
   return (
     <>
       <ul className={styles.messages__list}>
     {messages.map(({ id, name, message }) =>
-      <li key={id} style={{
+      <li className={styles.item} key={id} style={{
         margin: 10,
         border:"2px solid green",
         marginLeft:"auto",
         width: "fit-content",
-        padding: 10,borderRadius:10                        }}>
+        padding: 20,borderRadius:10                        }}>
             <span>{name}</span>
-            <p>{message}</p>
+        <p>{message}</p>
+       <img onClick={()=>removeMessage(id)} src={close} alt="close" className={styles.btn} />
         </li>
 
     )}
@@ -27,8 +26,8 @@ const MessageItem = ({messages}) => {
   );
 }
 
-
 MessageItem.propTypes = {
-  messages: PropTypes.array
+  messages: PropTypes.array,
+  removeMessage:PropTypes.func
 }
 export default MessageItem;
