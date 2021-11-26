@@ -9,6 +9,10 @@ export const links = [
         to: "/profile",
         text:"Profile",
     },
+      {
+        to: "/articles",
+        text:"ArticlesPage",
+    },
      {
         to: "/chats",
         text:"Chat",

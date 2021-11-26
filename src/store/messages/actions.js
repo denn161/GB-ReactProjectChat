@@ -4,8 +4,6 @@ import { hideAlert } from "../alertMessage/actions"
 export const ADD_MESSAGE = 'MESSAGES::ADD_MESSAGE'
 export const DELETE_MESSAGE = 'MESSAGES::DELETE_MESSAGE'
 
-
-
 export const addMessages = (chatId,newMessage) => ({
     type: ADD_MESSAGE,
     payload: {
@@ -17,7 +15,6 @@ export const deleteMessages = (chatId,idToDelete) => ({
     type: DELETE_MESSAGE,
     payload:{chatId,idToDelete}    
 })
-
 
 let timeout;
 const forbidden = ['fuck', 'сука','ппц', 'dig','хер','иди в жопу']
