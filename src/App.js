@@ -10,10 +10,9 @@ function App() {
   
   return (
     <Provider store={store}>
-      <PersistGate  persistor={persistor}>
+    <PersistGate  persistor={persistor}>
        <PageRouter/>     
-      </PersistGate>
-    
+    </PersistGate>    
     </Provider>
   
   );

@@ -2,6 +2,23 @@
 export const TOGGLE_CHECKBOX = 'PROFILE::TOGGLE_CHECKBOX'
 export const CHANGE_VALUE = 'PROFILE::CHANGE_VALUE'
 export const ARRAY_NAMES = 'PROFILE::ARRAY_NAMES'
+export const AUTH_PROFILE_SIGN = 'AUTH_PROFILE::AUTH'
+export const AUTH_PROFILE_SIGNOUT = 'AUTH_PROFILE::SIGNOUT'
+
+
+
+export const signInProfile = () => ({
+    type:AUTH_PROFILE_SIGN
+})
+
+export const signOutProfile = () => ({
+    type:AUTH_PROFILE_SIGNOUT
+})
+
+
+
+
+
 
 export const toggleCheckbox = {
     type:TOGGLE_CHECKBOX

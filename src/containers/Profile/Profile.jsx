@@ -2,7 +2,7 @@
 import React,{useState} from 'react'
 import {useSelector,useDispatch} from 'react-redux';
 import styles from './Profile.module.css';
-import {changeValueStore } from '../../store/profile/actions';
+import {changeValueStore, signOutProfile } from '../../store/profile/actions';
 import { selectorName } from '../../store/profile/selectors';
 
 
@@ -27,11 +27,15 @@ const Profile = () => {
     }   
     setValue('')
   }
+
+  const handleSignOut = () => {
+    dispatch(signOutProfile())
+  }
  
   return (
 
     <div className={styles.container}>
-    
+     <button onClick={handleSignOut} className='btn btn-danger'>SIGN_OUT</button>
       
       <form onSubmit={handleSubmit}>
       <p>{name}</p>  

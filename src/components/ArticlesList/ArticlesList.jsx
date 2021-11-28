@@ -1,49 +1,30 @@
 
 import PropTypes from 'prop-types';
-import {useEffect, useState } from 'react'
-import{urlApi} from '../utils/constants'
+import {useCallback, useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import ArticlesItem from '../../componentsItem/ArticlesItem';
+import { getArticles } from '../../store/fetchs/articles/actions';
+import { selectArticlesList} from '../../store/fetchs/articles/selectors';
 import Spinner from '../Spinner';
 import styles from './ArticlesList.module.css';
 
 const ArticlesList = () => {
       
-   
-    const [articles, setArticles] = useState([]);
+  const dispatch = useDispatch()
 
-    const [error, setError] = useState(true)
+  const {articles,loading,error,errorText} = useSelector(selectArticlesList)
+  
 
-    const [loading, setLoading] = useState(null)
-     
     
-    const reloadingApi = async () => {
-        try {
-            setLoading(true)
-            const response = await fetch(urlApi)
-            if (!response.ok) {
-                throw new Error('not ok', response.status)
-                 
-            }
-            const result = await response.json()
-            setArticles(result)
-            setLoading(false)
-              
-          
-        } catch (error) {
-          setError(false)
-           console.log(error.message)
-        }
-     finally {
-        setLoading(false)
-    }
-  }
+    const reloadingApi = useCallback( () => {
+        dispatch(getArticles())
+  },[dispatch])
     
     useEffect(() => {
-     reloadingApi()    
+    reloadingApi()    
       
           
-    },[])
-
+    },[reloadingApi])
 
     return (
         
@@ -53,11 +34,11 @@ const ArticlesList = () => {
             error ?
                 (
                     <>
-           <button onClick={reloadingApi} className='btn btn-success'>Загрузить статьи</button>
+           <button onClick={()=>reloadingApi()} className='btn btn-success'>Загрузить статьи</button>
              <ArticlesItem date={articles} />
                     </>                    
                 )
-              :(<p>Что то пошло не так</p>)  }
+              :(<p>{errorText}</p>)  }
         
         </div>  
   );

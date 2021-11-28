@@ -1,4 +1,4 @@
-import {CHANGE_VALUE} from "./actions";
+import {AUTH_PROFILE_SIGN, AUTH_PROFILE_SIGNOUT, CHANGE_VALUE} from "./actions";
 
 // const initialState = {
 //     checkbox: false,
@@ -7,7 +7,8 @@ import {CHANGE_VALUE} from "./actions";
 
 const initialState = {
     name: 'default name',
-    names:[]
+    names: [],
+    auth:null
 }
 
 
@@ -19,6 +20,16 @@ export const profileReducer = (state = initialState, action) => {
                 name: action.payload,
                 names:[...state.names,action.payload]
 
+            }
+          case AUTH_PROFILE_SIGN:
+            return {
+                ...state,
+                auth:true           
+            }
+        case AUTH_PROFILE_SIGNOUT:
+            return {
+                ...state,
+                auth:false           
             }
        
         default:

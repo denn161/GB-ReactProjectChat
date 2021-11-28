@@ -7,21 +7,24 @@ import { reducerMessages } from './messages/reducerMessages';
 import { profileReducer } from './profile/reducer';
 import { reducerAlert } from './alertMessage/reducerAlert';
 import { forbiddenWordsMiddleware } from './alertMessage/actions';
+import { articlesReducer } from './fetchs/articles/reducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const config = {
     key: 'MESEGUSER',
     storage,
-    blacklist:['profile','alert']    
+    blacklist:['profile','alert','articles']    
 }
 
 const persitedreducer = persistReducer(config,combineReducers({
       profile: profileReducer,
       chats: reducerChats,
       messages: reducerMessages,
-      alert:reducerAlert
+      alert: reducerAlert,
+      articles:articlesReducer
 }))
+
 
 export const store = createStore(persitedreducer, composeEnhancers(applyMiddleware(thunk,forbiddenWordsMiddleware)));
 
