@@ -2,8 +2,9 @@
 import React,{useState} from 'react'
 import {useSelector,useDispatch} from 'react-redux';
 import styles from './Profile.module.css';
-import {changeValueStore, signOutProfile } from '../../store/profile/actions';
+import {changeValueStore} from '../../store/profile/actions';
 import { selectorName } from '../../store/profile/selectors';
+import { logOut } from '../../services/firebase';
 
 
 const Profile = () => {
@@ -21,19 +22,24 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();   
     if (value) {
-   dispatch(changeValueStore(value))
- 
+   dispatch(changeValueStore(value)) 
       
     }   
     setValue('')
   }
 
-  const handleSignOut = () => {
-    dispatch(signOutProfile())
+  const handleSignOut = async () => {
+   try {
+        await  logOut()
+     } catch (error) {
+       console.log(error.message)
+       
+     }
+
+     
   }
  
   return (
-
     <div className={styles.container}>
      <button onClick={handleSignOut} className='btn btn-danger'>SIGN_OUT</button>
       

@@ -1,9 +1,6 @@
 import {AUTH_PROFILE_SIGN, AUTH_PROFILE_SIGNOUT, CHANGE_VALUE} from "./actions";
 
-// const initialState = {
-//     checkbox: false,
-//     name:'Показать текст'
-// }
+
 
 const initialState = {
     name: 'default name',

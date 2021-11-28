@@ -11,8 +11,8 @@ const Header = () => {
           <div className="container">
                 <div className={styles.header__inner}>
               <ul className={styles.list__link}>
-                  {links.map(({ to, text }) =>
-                   <li className={styles.list__item}><Link className={styles.link} to={to}>{text}</Link></li>              
+                  {links.map(({ to, text },i) =>
+                   <li key={i} className={styles.list__item}><Link className={styles.link} to={to}>{text}</Link></li>              
               )}
               </ul>
               </div>
