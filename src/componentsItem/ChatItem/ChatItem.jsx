@@ -8,7 +8,7 @@ import styles from './ChatItem.module.css';
 const ChatItem = ({ chats,removeChats }) => {
   return (
     <ul className={styles.chat__list}>
-      {chats.map(({ id,name, img }) =>
+      {chats.map(({ id,name,img }) =>
         <li className={styles.list__item} key={id}>
           <NavLink to={`/chats/${id}`}>
           <img className={styles.img} src={img} alt="photoChat" />

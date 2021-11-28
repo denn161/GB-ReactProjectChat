@@ -11,3 +11,5 @@ export const urlApi = 'https://api.spaceflightnewsapi.net/v3/articles';
 //      ERRORS :3
 
 // }
+
+export const imgDefault = 'https://i.ibb.co/b62KLMW/img1.jpg'

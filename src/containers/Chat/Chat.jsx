@@ -1,11 +1,7 @@
 
 import React,{useCallback} from "react";
-
-
-
 import { Box } from "@material-ui/core";
 import { useParams, Navigate } from "react-router";
-
 import { useSelector, useDispatch } from "react-redux";
 import Form from "../../components/Form";
 import AlertPage from '../../components/Alert'
@@ -34,15 +30,14 @@ const Chat = () => {
     dispatch(deleteMessages(chatId,id))
   },[dispatch,chatId]
 )
-   const addMessage = useCallback((newMessage) => {
+ const addMessage = useCallback((newMessage) => {
      if (newMessage.message.trim()) {
       dispatch(addMessageWithReply(chatId,newMessage))
      
      }
-       dispatch(initAlertWithRiply('Поле сообщения не может быть пустым',newMessage))
+   dispatch(initAlertWithRiply('Поле сообщения не может быть пустым',newMessage))
        
-  }, [dispatch,chatId]) 
-   
+  }, [dispatch,chatId])    
  
   
   if (!messages[chatId]) {

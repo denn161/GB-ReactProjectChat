@@ -1,10 +1,11 @@
 
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {useSelector,useDispatch} from 'react-redux';
 import styles from './Profile.module.css';
 import {changeValueStore} from '../../store/profile/actions';
 import { selectorName } from '../../store/profile/selectors';
-import { logOut } from '../../services/firebase';
+import { logOut, userRef } from '../../services/firebase';
+import { onValue,set } from '@firebase/database';
 
 
 const Profile = () => {
@@ -15,16 +16,22 @@ const Profile = () => {
   
   const [value, setValue] = useState('')
 
+ useEffect(() => {
+   const unsubscribe=onValue(userRef, (snapshot) => {
+      const userData = snapshot.val()
+     dispatch(changeValueStore(userData?.name|| "")) 
+    })
+     return unsubscribe
+  },[dispatch])
+
   const changeValue = (e) => {
     setValue(e.target.value)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault();   
-    if (value) {
-   dispatch(changeValueStore(value)) 
-      
-    }   
+    e.preventDefault(); 
+    set(userRef, {name:value})     
+    
     setValue('')
   }
 
@@ -34,10 +41,10 @@ const Profile = () => {
      } catch (error) {
        console.log(error.message)
        
-     }
-
-     
+     }    
   }
+
+  
  
   return (
     <div className={styles.container}>

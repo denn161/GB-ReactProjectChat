@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import{ BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from '../../containers/HomePage'
 import Chat from '../../containers/Chat'
@@ -11,12 +11,16 @@ import ArticlesPage from "../../containers/ArticlesPage";
 import {PublicRouter} from "../PublicRouter";
 import {PrivateRouter } from "../PrivateRouter";
 import Login from "../../containers/Login/Login";
-import {auth} from "../../services/firebase";
+import {auth, messagesRef} from "../../services/firebase";
 import {useDispatch} from "react-redux";
 import {signInProfile, signOutProfile } from "../../store/profile/actions";
+import { onValue } from "@firebase/database";
 
 
 export const PageRouter = () => {
+
+  const [mess, setMess] = useState({})
+
 
   const dispatch=useDispatch() 
   
@@ -29,7 +33,20 @@ export const PageRouter = () => {
        }
    })
     return unsubscribe;
-   },[dispatch])
+  }, [dispatch])
+  
+  useEffect(() => {
+    onValue(messagesRef, (snepMessages) => {
+
+      const newMssg = {};
+      snepMessages.forEach((chatMsgSnap) => {
+        newMssg[chatMsgSnap.key]=chatMsgSnap.val()        
+      })
+      setMess(newMssg)
+     
+   }) 
+
+  },[])
 
   return (    
     <BrowserRouter>
