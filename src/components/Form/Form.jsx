@@ -29,8 +29,7 @@ const Form = ({ addMessage,chatId }) => {
     if (e.key === "Enter") {
       handleSubmit(e)
     }
-  }
-  
+  }  
   useEffect(() => {
     if (chatId) {
      inputRef?.current.focus() 

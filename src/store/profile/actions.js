@@ -1,3 +1,4 @@
+import { auth } from "../../services/firebase"
 
 export const TOGGLE_CHECKBOX = 'PROFILE::TOGGLE_CHECKBOX'
 export const CHANGE_VALUE = 'PROFILE::CHANGE_VALUE'
@@ -16,6 +17,15 @@ export const signOutProfile = () => ({
 })
 
 
+export const autchUsersInProject = () => (dispatch) => {
+    auth?.onAuthStateChanged((user) => {
+      if (user) {
+      dispatch(signInProfile())
+      } else {
+        dispatch(signOutProfile())
+       }
+   })    
+}
 
 
 

@@ -5,16 +5,14 @@ import { useInput } from '../../hooks/useInput'
 // import { addChats } from '../../store/chats/action'
 import img from '../../componentsItem/ChatItem/img/img1.jpg'
 import styles from './ChatList.module.css'
-import { deleteChat } from '../../store/chats/action';
+import { addNewChatinFirebase, deleteChat, initChatTracking } from '../../store/chats/action';
 import {selectorChats } from '../../store/chats/secelectors'
-import { onValue,set } from '@firebase/database'
-import { chatsRef, getChatMessagesRefById, getChatRefById } from '../../services/firebase'
-// import { imgDefault } from '../utils/constants'
+
 
 
 const ChatList = () => { 
 
-const [chats,setChats] = useState([])
+// const [chats,setChats] = useState([])
 
 const chatList = useSelector(selectorChats)
   
@@ -31,21 +29,9 @@ const chatList = useSelector(selectorChats)
   useEffect(() => {  
     inputRef?.current.focus()
     
-     const unsubscribe=onValue(chatsRef, (chatsSnap) => {
-          console.log(chatsSnap)
-          const newChats = [];
-          chatsSnap.forEach((snapshot) => {
-         newChats.push(snapshot.val())
-          })
-       
-       setChats(newChats)
-        
-     })
-    
-     return unsubscribe
+    dispatch(initChatTracking())   
  
-  }, [])
-
+  }, [dispatch])
 
     
   const incrementCounter = () => {
@@ -56,7 +42,6 @@ const chatList = useSelector(selectorChats)
    dispatch(deleteChat(id))
   //  dispatch(deleteMessages(id,id))
   } 
-
   const handelSubmit = (e) => {
     e.preventDefault()
     incrementCounter()
@@ -66,23 +51,14 @@ const chatList = useSelector(selectorChats)
         img:img,
         name: bind.value        
       }
-    // dispatch(addChats(newChat))
+    // dispatch(addChats(newChat))      
       
-       set(getChatMessagesRefById(newChat.id),{empty:true})
-      
-      set(getChatRefById(newChat.id),{
-        id: `chat${counter}`,
-        img:img,
-        name: bind.value        
-      })
-    
+    dispatch(addNewChatinFirebase(newChat))   
      
     }
     onClear()
     inputRef.current.focus()
-  }
-  
- 
+  } 
   return (
 
     <>     
@@ -93,7 +69,7 @@ const chatList = useSelector(selectorChats)
       <button className={styles.chatlist__btn} type="submit">Добавить</button>    
       </form>   
       {chatList.length ?
-        (<ChatItem chats={chats} removeChats={removeChats} />)
+        (<ChatItem chats={chatList} removeChats={removeChats} />)
         : <p>Список чатов пуст, поробуйте добавить новый чат</p>}    
       </div>
       </>

@@ -1,6 +1,6 @@
 
 import { ADD_CHAT,DELETE_CHAT } from "../chats/action";
-import { ADD_MESSAGE, DELETE_MESSAGE } from "./actions";
+import { ADD_MESSAGE, DELETE_MESSAGE, SET_MESSAGES } from "./actions";
 
 const initialMessages = {
       
@@ -11,7 +11,9 @@ export const reducerMessages = (state = initialMessages, {payload,type}) => {
             return {
             ...state, [payload.chatId]: [...state[payload.chatId],
                 payload.newMessage]
-            }        
+            }
+        case SET_MESSAGES:
+            return payload
         
         case DELETE_MESSAGE: {
             const newMessages = {...state}

@@ -1,5 +1,5 @@
 
-import React, { useEffect,useState } from "react";
+import React, { useEffect} from "react";
 import{ BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomePage from '../../containers/HomePage'
 import Chat from '../../containers/Chat'
@@ -11,43 +11,22 @@ import ArticlesPage from "../../containers/ArticlesPage";
 import {PublicRouter} from "../PublicRouter";
 import {PrivateRouter } from "../PrivateRouter";
 import Login from "../../containers/Login/Login";
-import {auth, messagesRef} from "../../services/firebase";
 import {useDispatch} from "react-redux";
-import {signInProfile, signOutProfile } from "../../store/profile/actions";
-import { onValue } from "@firebase/database";
+import {autchUsersInProject} from "../../store/profile/actions";
+import {initMessagesTracking } from "../../store/messages/actions";
 
 
 export const PageRouter = () => {
 
-  const [mess, setMess] = useState({})
-
-
   const dispatch=useDispatch() 
   
   useEffect(() => {
-   const unsubscribe=auth.onAuthStateChanged((user) => {
-      if (user) {
-      dispatch(signInProfile())
-      } else {
-        dispatch(signOutProfile())
-       }
-   })
-    return unsubscribe;
-  }, [dispatch])
+   dispatch(autchUsersInProject())
+    
+   dispatch(initMessagesTracking())
   
-  useEffect(() => {
-    onValue(messagesRef, (snepMessages) => {
-
-      const newMssg = {};
-      snepMessages.forEach((chatMsgSnap) => {
-        newMssg[chatMsgSnap.key]=chatMsgSnap.val()        
-      })
-      setMess(newMssg)
-     
-   }) 
-
-  },[])
-
+  }, [dispatch])  
+ 
   return (    
     <BrowserRouter>
      <Header/>
@@ -66,7 +45,7 @@ export const PageRouter = () => {
         <Route path="chats">
           <Route path=":chatId" element={
             <PrivateRouter>
-              <Chat />
+              <Chat  />
             </PrivateRouter>
             } />
           <Route index element={
