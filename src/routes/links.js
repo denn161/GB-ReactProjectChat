@@ -3,7 +3,7 @@
 export const links = [
     {
         to: "/",
-        text:"Home",
+        text:"MainPage",
     },
     //  {
     //     to: "/login",

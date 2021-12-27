@@ -1,11 +1,11 @@
-import { auth } from "../../services/firebase"
+// import { auth } from "../../services/firebase"
 
 export const TOGGLE_CHECKBOX = 'PROFILE::TOGGLE_CHECKBOX'
 export const CHANGE_VALUE = 'PROFILE::CHANGE_VALUE'
 export const ARRAY_NAMES = 'PROFILE::ARRAY_NAMES'
 export const AUTH_PROFILE_SIGN = 'AUTH_PROFILE::AUTH'
 export const AUTH_PROFILE_SIGNOUT = 'AUTH_PROFILE::SIGNOUT'
-
+export const ADD_TEXT_BUTTON_FORM='ADD_TEXT_BUTTON::FORM'
 
 
 export const signInProfile = () => ({
@@ -17,15 +17,17 @@ export const signOutProfile = () => ({
 })
 
 
-export const autchUsersInProject = () => (dispatch) => {
-    auth?.onAuthStateChanged((user) => {
-      if (user) {
-      dispatch(signInProfile())
-      } else {
-        dispatch(signOutProfile())
-       }
-   })    
-}
+
+// export const autchUsersInProject = () => (dispatch) => {
+//  auth?.onAuthStateChanged((user) => {
+//       if (user) {
+//       dispatch(signInProfile())
+//       } else {
+//     dispatch(signOutProfile())
+//        }
+//  })
+ 
+// }
 
 
 

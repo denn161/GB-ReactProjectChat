@@ -20,6 +20,8 @@ export const getArticlesSuccesses = (articles) => ({
     payload:articles
 })
 
+
+
 export const getArticles = () => async (dispatch) => {
       dispatch(getArticlesLoading())
     try {
@@ -34,8 +36,8 @@ export const getArticles = () => async (dispatch) => {
           
     } catch (error) {
           
-            dispatch(getArticlesErrors('Что то пошло не так...'))       
-           console.warn(error.message)
+      dispatch(getArticlesErrors('Что то пошло не так...'))       
+        console.log(error.message)
         }
     
     

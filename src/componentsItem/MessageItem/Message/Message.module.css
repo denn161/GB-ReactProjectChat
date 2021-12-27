@@ -1,0 +1,15 @@
+
+
+.item{
+  position:relative;
+}
+
+.btn{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 6px;
+  right:6px;
+  border: none;
+ border-radius: 10px;
+}

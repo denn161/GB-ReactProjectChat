@@ -12,8 +12,10 @@ import {PublicRouter} from "../PublicRouter";
 import {PrivateRouter } from "../PrivateRouter";
 import Login from "../../containers/Login/Login";
 import {useDispatch} from "react-redux";
-import {autchUsersInProject} from "../../store/profile/actions";
 import {initMessagesTracking } from "../../store/messages/actions";
+import { auth } from "../../services/firebase";
+import { signInProfile, signOutProfile } from "../../store/profile/actions";
+import MainPage from "../../containers/MainPage";
 
 
 export const PageRouter = () => {
@@ -21,21 +23,36 @@ export const PageRouter = () => {
   const dispatch=useDispatch() 
   
   useEffect(() => {
-   dispatch(autchUsersInProject())
-    
-   dispatch(initMessagesTracking())
+ const unsubscribe=auth.onAuthStateChanged((user) => {
+   if (user) {       
+    dispatch(signInProfile())     
+      } else {
+    dispatch(signOutProfile())
+      
+       }
+ }) 
+  return unsubscribe    
   
   }, [dispatch])  
+
+  useEffect(() => {
+   dispatch(initMessagesTracking())
+
+  },[dispatch])
  
   return (    
     <BrowserRouter>
      <Header/>
       <Routes>
-        <Route path="/" element={
+         <Route path="/" element={
+          <PublicRouter>
+            <MainPage />
+          </PublicRouter>} />
+        <Route path="/home" element={
           <PublicRouter>
             <HomePage />
           </PublicRouter>} />
-        <Route path="/login" element={<Login/>}
+        <Route path="/login" element={<PublicRouter><Login/></PublicRouter>}
         />
         <Route path="/profile" element={
           <PrivateRouter>
@@ -55,7 +72,7 @@ export const PageRouter = () => {
         </Route>
         <Route path="*" element={<NotFoundPage/>} />
       </Routes>
-      </BrowserRouter>    
+   </BrowserRouter>    
   );
 }
 

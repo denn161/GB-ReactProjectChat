@@ -4,7 +4,7 @@ import {useSelector,useDispatch} from 'react-redux';
 import styles from './Profile.module.css';
 import {changeValueStore} from '../../store/profile/actions';
 import { selectorName } from '../../store/profile/selectors';
-import { logOut, userRef } from '../../services/firebase';
+import { userRef } from '../../services/firebase';
 import { onValue,set } from '@firebase/database';
 
 
@@ -35,20 +35,12 @@ const Profile = () => {
     setValue('')
   }
 
-  const handleSignOut = async () => {
-   try {
-        await  logOut()
-     } catch (error) {
-       console.log(error.message)
-       
-     }    
-  }
+ 
 
   
  
   return (
-    <div className={styles.container}>
-     <button onClick={handleSignOut} className='btn btn-danger'>SIGN_OUT</button>
+    <div className={styles.container}>  
       
       <form onSubmit={handleSubmit}>
       <p>{name}</p>  

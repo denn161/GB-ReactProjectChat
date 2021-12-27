@@ -1,21 +1,20 @@
 import {AUTH_PROFILE_SIGN, AUTH_PROFILE_SIGNOUT, CHANGE_VALUE} from "./actions";
 
 
-
 const initialState = {
     name: 'default name',
     names: [],
-    auth:null
+    auth: null,
+ 
 }
 
-
-export const profileReducer = (state = initialState, action) => {
-    switch (action.type) {
+export const profileReducer = (state = initialState, {type,payload}) => {
+    switch (type) {
         case CHANGE_VALUE:
             return {
                 ...state,
-                name: action.payload,
-                names:[...state.names,action.payload]
+                name: payload,
+                names:[...state.names,payload]
 
             }
           case AUTH_PROFILE_SIGN:
@@ -27,7 +26,7 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 auth:false           
-            }
+            }        
        
         default:
             return state;

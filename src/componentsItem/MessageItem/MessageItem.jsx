@@ -1,25 +1,24 @@
 
 import PropTypes from 'prop-types';
-import close from '../ChatItem/img/close/close.png'
+
+import Message from './Message';
 import styles from './MessageItem.module.css';
 
-const MessageItem = ({messages,removeMessage}) => {
+const MessageItem = (props) => {
+  const { messages = [], removeMessage } = props
+  
+  if(!messages.length) return null
+            
   return (
     <>
       <ul className={styles.messages__list}>
-    {messages.map(({ id, name, message }) =>
-      <li className={styles.item} key={id} style={{
-        margin: 10,
-        border:"2px solid green",
-        marginLeft:"auto",
-        width: "fit-content",
-        padding: 20,borderRadius:10                        }}>
-            <span>{name}</span>
-        <p>{message}</p>
-       <img onClick={()=>removeMessage(id)} src={close} alt="close" className={styles.btn} />
-        </li>
+    {messages.map((message) =>
+      <Message key={message.id} message={message}
+        removeMessage={removeMessage} />
 
-    )}
+        )      
+        
+        }
 </ul>
       
       </>

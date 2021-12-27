@@ -4,6 +4,8 @@
 }
 .header__inner{
     padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
 }
 .list__link{
     list-style: none;
@@ -22,4 +24,21 @@
     font-size: 24px;
     font-weight: bold;
     transition: all .3s;
+}
+
+.link:hover{
+    color: rgb(230, 155, 18);
+}
+
+.buttons{
+    display: flex;
+}
+
+.header__button{
+    display: block;
+    margin-right: 20px;
+
+}
+.header__button:last-child{
+    margin-right: 0;
 }

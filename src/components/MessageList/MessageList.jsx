@@ -4,7 +4,9 @@ import MessageItem from '../../componentsItem/MessageItem';
 import styles from './MessageList.module.css';
 
 
-const MessageList = ({ messages,removeMessage }) => {
+const MessageList = ({ messages, removeMessage }) => {
+  
+ 
   
   return (     
        

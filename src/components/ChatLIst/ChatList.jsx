@@ -29,10 +29,9 @@ const chatList = useSelector(selectorChats)
   useEffect(() => {  
     inputRef?.current.focus()
     
-    dispatch(initChatTracking())   
+   dispatch(initChatTracking())   
  
   }, [dispatch])
-
     
   const incrementCounter = () => {
     setCounter(counter + 1);

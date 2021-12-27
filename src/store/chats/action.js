@@ -25,7 +25,6 @@ export const setChats = (chats) => {
         payload:chats
      }
 }
-
 export const initChatTracking = () => (dispatch) => {       
     onValue(chatsRef, (chatsSnap) => {
           console.log(chatsSnap)
@@ -37,11 +36,16 @@ export const initChatTracking = () => (dispatch) => {
      })
 }
 
-
 export const addNewChatinFirebase = (newChat) => (dispatch) => {
    set(getChatRefById(newChat.id),newChat)
    set(getChatMessagesRefById(newChat.id),{ empty: true })
   
 }
+
+// export const deleteChatsOfFirebase = (id) => (dispatch) => {
+//     set(getChatRefById(id),null)
+// }
+
+
 
 
