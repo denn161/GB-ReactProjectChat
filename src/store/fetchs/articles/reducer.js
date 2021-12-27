@@ -1,11 +1,4 @@
 import { FETCH_ARTICLES_ERROR, FETCH_ARTICLES_LOADING, FETCH_ARTICLES_SUCCESS } from "./actions";
-// const initialArticles = {
-//     articles: [],
-//     loading: true,
-//     error: true,
-//     errorText:''
-    
-// }
 
 const initialArticles = {
     articles: [],
