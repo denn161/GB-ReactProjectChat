@@ -1,7 +1,7 @@
-import styles from './Login.module.css';
+import { useState } from 'react';
 import AuthForm from "../../components/AuthForm";
 import { signUp } from '../../services/firebase';
-import { useState } from 'react';
+import styles from './Login.module.css';
 
 const Login = () => {
 
